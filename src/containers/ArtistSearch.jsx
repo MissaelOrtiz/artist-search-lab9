@@ -16,7 +16,7 @@ const ArtistSearch = () => {
   } else {
     pageC = 1;
   }
-  const [page, setPage] = useState(pageC);
+  const [page] = useState(pageC);
 
   useEffect(() => {
     getArtist(search, page)
