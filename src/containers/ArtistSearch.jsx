@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ArtistList from '../components/artists/ArtistList';
 import { getArtist } from '../services/musicApi';
 
 const ArtistSearch = () => {
@@ -20,8 +21,8 @@ const ArtistSearch = () => {
 
   return (
     <>
-      {/* <Search search={search} onSearch={handleSearch}/>
-      <ArtistList artists={artists} search={search} /> */}
+      {/* <Search search={search} onSearch={handleSearch}/> */}
+      <ArtistList artists={artists} search={search} />
     </>
   );
 };
