@@ -11,23 +11,33 @@ const ArtistSearch = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getArtist(search)
+    getArtist(search, page)
       .then((artists) => setArtists(artists))
       .then(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    if(search) getArtist(search, page)
-      .then((res) => setArtists(res));
+    if(search) {
+      setPage(1);
+      getArtist(search, page)
+        .then((res) => setArtists(res));
+    }
     if(!search) setArtists([]);
   }, [search]);
+
+  useEffect(() => {
+    setLoading(true);
+    getArtist(search, page)
+      .then((artists) => setArtists(artists))
+      .then(() => setLoading(false));
+  }, [page]);
 
   const handleSearch = ({ target }) => {
     setSearch(target.value);
   };
 
-  const handlePage = ({ target }) => {
-    setPage(page + target.value);
+  const handlePage = (number) => {
+    setPage(page + number);
   };
 
   if(loading) return <h1>Loading...</h1>;

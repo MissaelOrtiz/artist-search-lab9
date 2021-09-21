@@ -5,8 +5,8 @@ import Artist from './Artist';
 const ArtistList = ({ artists, search, page, setPage }) => (
   <>
     <section>
-      <button onClick={() => setPage()} value="-1">{page - 1}</button>
-      <button onClick={() => setPage()} value="1">{page + 1}</button>
+      <button onClick={() => setPage(-1)}>{page - 1}</button>
+      <button onClick={() => setPage(1)}>{page + 1}</button>
     </section>
     <ul>
       {artists.map(artist => (
