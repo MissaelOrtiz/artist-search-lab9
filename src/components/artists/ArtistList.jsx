@@ -10,7 +10,7 @@ const ArtistList = ({ artists, search, page, handlePage }) => (
     </section>
     <ul>
       {artists.map(artist => (
-        <li key={artist.id + search}>
+        <li key={artist.id + search} style={{ 'listStyle': 'none' }}>
           <Artist artist={artist} />
         </li>
       ))}

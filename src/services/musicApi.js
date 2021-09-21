@@ -10,9 +10,33 @@ export const getArtist = async (artistName, page) => {
       id: artist.id,
       type: artist.type,
       name: artist.name,
-      country: artist.country
+      country: artist.country,
+      begin: artist['life-span'].begin,
+      end: artist['life-span'].end
     }));
     return artistsArray;
+  } catch (error) {
+    console.error(`An error has occured: ${error.message}`);
+    return [];
+  }
+};
+
+export const getArtistById = async (id) => {
+  try {
+    const res = await fetch(
+      `http://musicbrainz.org/ws/2/artist/${id}?fmt=json`, { method: 'GET' }
+    );
+    const artist = await res.json();
+    const artistObj = {
+      id: artist.id,
+      type: artist.type,
+      name: artist.name,
+      country: artist.country,
+      begin: artist['life-span'].begin,
+      end: artist['life-span'].end
+    };
+    console.log('HERE', artistObj);
+    return artistObj;
   } catch (error) {
     console.error(`An error has occured: ${error.message}`);
     return [];
