@@ -16,7 +16,7 @@ const ArtistSearch = () => {
   } else {
     pageC = 1;
   }
-  const [page] = useState(pageC);
+  const [page, setPage] = useState(pageC);
 
   useEffect(() => {
     getArtist(search, page)
@@ -24,26 +24,8 @@ const ArtistSearch = () => {
       .then(() => setLoading(false));
   }, []);
 
-  // useEffect(() => {
-  //   console.log('SEARCH USEEFFECT');
-  //   if(search) {
-  //     setPage(1);
-  //     getArtist(search, page)
-  //       .then((res) => setArtists(res));
-  //   }
-  //   if(!search) setArtists([]);
-  // }, [search]);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getArtist(search, page)
-  //     .then((artists) => setArtists(artists))
-  //     .then(() => setLoading(false));
-  // }, [page]);
-
   const handleSearch = ({ target }) => {
     setSearch(target.value);
-    // location.replace(`/${target.value}/${page}`);
   };
 
   const handleSubmit = (event) => {
@@ -52,7 +34,6 @@ const ArtistSearch = () => {
   };
 
   const handlePage = (number) => {
-    // setPage(page + number);
     location.replace(`/${search}/${page + number}`);
   };
 

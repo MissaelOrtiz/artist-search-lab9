@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Search = ({ search, onSearch, onSubmit }) => (
-  <form onSubmit={onSubmit}>
+const Search = ({ search, onSearch, onSubmit }) => {
+  if(search === '') return (<form onSubmit={onSubmit}>
     <label>
     Find an Artist:{''}
       <input 
@@ -12,9 +12,21 @@ const Search = ({ search, onSearch, onSubmit }) => (
         onChange={onSearch}
       />
     </label>
-    <button> Submit</button>
-  </form>
-);
+    <button disabled> Submit</button>
+  </form>);
+  return (<form onSubmit={onSubmit}>
+    <label>
+    Find an Artist:{''}
+      <input 
+        type="text"
+        name="searchWord"
+        value={search}
+        onChange={onSearch}
+      />
+    </label>
+    <button > Submit</button>
+  </form>);
+};
 
 Search.propTypes = {
   search: PropTypes.string.isRequired,
