@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import ArtistSearch from '../../containers/artistSearch';
+import ArtistSearch from '../../containers/ArtistSearch';
 
 export default function App() {
   return (
@@ -11,7 +11,10 @@ export default function App() {
         </nav>
       </header>
       <Switch>
-        <Route exact path="/">
+        <Route path="/:searchC/:pageC">
+          <ArtistSearch />
+        </Route>
+        <Route path="/">
           <ArtistSearch />
         </Route>
       </Switch>
