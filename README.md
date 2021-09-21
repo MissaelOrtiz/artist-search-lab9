@@ -14,14 +14,17 @@
   * BONUS: As you type into the input box update a `searchTerm`query string.
     Navigating directly to a URL with a `searchTerm` query string pre-fills
     the search form.
+
 * Create an artist view which list all releases by an artist
   * Use `http://musicbrainz.org/ws/2/release?artist=<ARTIST_ID>&fmt=json`
   * Get cover art from `http://coverartarchive.org/release/<RELEASE_ID>/front`
   * Only some releases have cover art. Display a placeholder if no cover art.
   * Allow paging through releases
   * Bonus: Make the page part of a query string
+
 * Create a release view which displays a list of recordings for a release
   * Use `http://musicbrainz.org/ws/2/recording?release=<RELEASE_ID>&fmt=json`
+  
 * Create a song view which displays the lyrics of a song
   * Use `https://api.lyrics.ovh/v1/<ARTIST>/<TITLE>` to get lyrics
 
