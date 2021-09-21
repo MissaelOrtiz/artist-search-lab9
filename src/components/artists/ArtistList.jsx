@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Artist from './Artist';
 
-const ArtistList = ({ artists, search, page, setPage }) => (
+const ArtistList = ({ artists, search, page, handlePage }) => (
   <>
     <section>
-      <button onClick={() => setPage(-1)}>{page - 1}</button>
-      <button onClick={() => setPage(1)}>{page + 1}</button>
+      <button onClick={() => handlePage(-1)}>{page - 1}</button>
+      <button onClick={() => handlePage(1)}>{page + 1}</button>
     </section>
     <ul>
       {artists.map(artist => (
@@ -29,7 +29,7 @@ ArtistList.propTypes = {
   ),
   search: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,
-  setPage: PropTypes.func.isRequired
+  handlePage: PropTypes.func.isRequired
 };
 
 export default ArtistList;

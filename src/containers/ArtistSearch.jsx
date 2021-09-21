@@ -37,7 +37,11 @@ const ArtistSearch = () => {
   };
 
   const handlePage = (number) => {
-    setPage(page + number);
+    if(page > 1) {
+      setPage(page + number);
+    } else if(page === 1) {
+      setPage(page);
+    }
   };
 
   if(loading) return <h1>Loading...</h1>;
@@ -50,7 +54,7 @@ const ArtistSearch = () => {
   if(artists !== []) return (
     <>
       <Search search={search} onSearch={handleSearch}/>
-      <ArtistList artists={artists} search={search} page={page} setPage={handlePage} />
+      <ArtistList artists={artists} search={search} page={page} handlePage={handlePage} />
     </>
   );
 };
