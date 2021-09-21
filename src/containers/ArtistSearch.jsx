@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ArtistList from '../components/artists/ArtistList';
+import Search from '../components/artists/Search';
 import { getArtist } from '../services/musicApi';
 
 const ArtistSearch = () => {
@@ -13,6 +14,11 @@ const ArtistSearch = () => {
       .then(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    getArtist(search)
+      .then((res) => setArtists(res));
+  }, [search]);
+
   const handleSearch = ({ target }) => {
     setSearch(target.value);
   };
@@ -21,7 +27,7 @@ const ArtistSearch = () => {
 
   return (
     <>
-      {/* <Search search={search} onSearch={handleSearch}/> */}
+      <Search search={search} onSearch={handleSearch}/>
       <ArtistList artists={artists} search={search} />
     </>
   );
