@@ -5,7 +5,7 @@ import { getArtist } from '../services/musicApi';
 const ArtistSearch = () => {
   const [loading, setLoading] = useState(true);
   const [artists, setArtists] = useState([]);
-  const [search, setSearch] = useState('deathcab');
+  const [search, setSearch] = useState('death');
 
   useEffect(() => {
     getArtist(search)
