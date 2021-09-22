@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getArtistById, getReleases } from '../../services/musicApi';
-import ReleaseDetail from './ReleaseDetail';
+import Release from './Release';
 
 const ArtistDetail = () => {
   const { id } = useParams();
@@ -32,7 +32,7 @@ const ArtistDetail = () => {
       <ul>
         {releases.map(release => (
           <li key={release.id}>
-            <ReleaseDetail release={release} onError={onError} />
+            <Release release={release} onError={onError} />
           </li>
         ))}
       </ul>

@@ -75,3 +75,20 @@ export const getCoverArt = async (id) => {
     return 'https://community.mp3tag.de/uploads/default/original/2X/a/acf3edeb055e7b77114f9e393d1edeeda37e50c9.png';
   }
 };
+
+export const getSongsById = async (id) => {
+  try {
+    const res = await fetch(
+      `http://musicbrainz.org/ws/2/recording?release=${id}&fmt=json`, { method: 'GET' }
+    );
+    const songs = await res.json();
+    const songsObj = songs.recordings.map(song => ({
+      id: song.id,
+      title: song.title
+    }));
+    return songsObj;
+  } catch (error) {
+    console.error(`An error has occured: ${error.message}`);
+    return {};
+  }
+};

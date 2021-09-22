@@ -1,27 +1,34 @@
 /* eslint-disable max-len */
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getSongsById } from '../../services/musicApi';
 
-const ReleaseDetail = ({ release, onError }) => {
-  const { title, date, image, id } = release;
-  
+const ReleaseDetail = () => {
+  const { titleC, idC } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [songs, setSongs] = useState({});
+
+  useEffect(() => {
+    getSongsById(idC)
+      .then(songsObj => setSongs(songsObj))
+      .then(() => setLoading(false));
+  }, []);
+
+  if(loading) return <h1>Loading...</h1>;
   return (
-    <button onClick={() => location.replace(`/releases/${id}`)}>
-      <img src={image} alt={title + ' cover art'} width={'100'} onError={onError}/>
-      <p>{title}</p>
-      <p>{date}</p>
-    </button>
+    <>
+      <h1>{titleC}</h1>
+      <p>Songs in {titleC}:</p>
+      <ul>
+        {songs.map(song => (
+          <li key={song.id}>
+            {/* <Song title={song.title} id={song.id}/> */}
+            <p>{song.title} {song.id}</p>
+          </li>
+        ))}
+      </ul>
+    </>
   );
-};
-
-ReleaseDetail.propTypes = {
-  release: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    date: PropTypes.string,
-    image: PropTypes.string,
-    id: PropTypes.string.isRequired,
-  }),
-  onError: PropTypes.func.isRequired
 };
 
 export default ReleaseDetail;
