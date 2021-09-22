@@ -48,14 +48,28 @@ export const getReleases = async (id) => {
       `http://musicbrainz.org/ws/2/release?artist=${id}&fmt=json`, { method: 'GET' }
     );
     const json = await res.json();
-    const releaseArray = json.releases.map((release) => ({
-      id: release.id,
-      title: release.title,
-      date: release.date
-    }));
+    const releaseArray = json.releases.map(async (release) => {
+      const releaseUrl = await getCoverArt(release.id);
+      return {
+        id: release.id,
+        title: release.title,
+        date: release.date,
+        image: releaseUrl
+      };});
+    const resolved = await Promise.all(releaseArray);
+    console.log(resolved);
     return releaseArray;
   } catch (error) {
     console.error(`An error has occured: ${error.message}`);
     return [];
+  }
+};
+
+export const getCoverArt = async (id) => {
+  try {
+    const res = await fetch(`http://coverartarchive.org/release/${id}/front`);
+    return await res.json();
+  } catch (error) {
+    return 'https://community.mp3tag.de/uploads/default/original/2X/a/acf3edeb055e7b77114f9e393d1edeeda37e50c9.png';
   }
 };

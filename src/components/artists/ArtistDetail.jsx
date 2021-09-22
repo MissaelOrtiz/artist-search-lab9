@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getArtistById, getReleases } from '../../services/musicApi';
@@ -15,15 +16,23 @@ const ArtistDetail = () => {
       .then(releasesArr => setReleases(releasesArr))
       .then(() => setLoading(false));
   }, []);
-
+  
   if(loading) return <h1>Loading...</h1>;
-  console.log(releases);
   return (
     <>
       <h1>{artist.name}</h1>
       <p>Country:{artist.country}</p>
       <p>Type: {artist.type}</p>
       <p>Active: {artist.begin} - {artist.end ?? 'current'}</p>
+      <ul>
+        {releases.map(release => {
+          <li key={release.id}>
+            <img src={release.image} alt={release.title + 'cover art'}/>
+            <p>{release.title}</p>
+            <p>{release.date}</p>
+          </li>;
+        })}
+      </ul>
     </>
   );
 };
