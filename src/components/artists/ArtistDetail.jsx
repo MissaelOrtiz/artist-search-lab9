@@ -25,13 +25,14 @@ const ArtistDetail = () => {
       <p>Type: {artist.type}</p>
       <p>Active: {artist.begin} - {artist.end ?? 'current'}</p>
       <ul>
-        {releases.map(release => {
+        {releases.map(release => (
           <li key={release.id}>
-            <img src={release.image} alt={release.title + 'cover art'}/>
+            <img src={release.image} alt={release.title + 'cover art'} width={'100'}/>
             <p>{release.title}</p>
             <p>{release.date}</p>
-          </li>;
-        })}
+            <p>Hello World</p>
+          </li>
+        ))}
       </ul>
     </>
   );

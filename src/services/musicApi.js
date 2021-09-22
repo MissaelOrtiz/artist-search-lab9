@@ -57,8 +57,7 @@ export const getReleases = async (id) => {
         image: releaseUrl
       };});
     const resolved = await Promise.all(releaseArray);
-    console.log(resolved);
-    return releaseArray;
+    return resolved;
   } catch (error) {
     console.error(`An error has occured: ${error.message}`);
     return [];
@@ -67,9 +66,11 @@ export const getReleases = async (id) => {
 
 export const getCoverArt = async (id) => {
   try {
-    const res = await fetch(`http://coverartarchive.org/release/${id}/front`);
-    return await res.json();
+    const res = await fetch(`http://coverartarchive.org/release/${id}/front`, { method: 'GET' });
+    const art = res.url;
+    return art;
   } catch (error) {
+    console.error(`An error has occured: ${error.message}`);
     return 'https://community.mp3tag.de/uploads/default/original/2X/a/acf3edeb055e7b77114f9e393d1edeeda37e50c9.png';
   }
 };
