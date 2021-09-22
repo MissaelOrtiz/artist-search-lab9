@@ -16,7 +16,7 @@ const ArtistDetail = () => {
       .then(releasesArr => setReleases(releasesArr))
       .then(() => setLoading(false));
   }, []);
-  
+
   if(loading) return <h1>Loading...</h1>;
   return (
     <>
@@ -30,7 +30,6 @@ const ArtistDetail = () => {
             <img src={release.image} alt={release.title + 'cover art'} width={'100'}/>
             <p>{release.title}</p>
             <p>{release.date}</p>
-            <p>Hello World</p>
           </li>
         ))}
       </ul>
