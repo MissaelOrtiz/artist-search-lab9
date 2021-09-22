@@ -35,8 +35,25 @@ export const getArtistById = async (id) => {
       begin: artist['life-span'].begin,
       end: artist['life-span'].end
     };
-    console.log('HERE', artistObj);
     return artistObj;
+  } catch (error) {
+    console.error(`An error has occured: ${error.message}`);
+    return {};
+  }
+};
+
+export const getReleases = async (id) => {
+  try {
+    const res = await fetch(
+      `http://musicbrainz.org/ws/2/release?artist=${id}&fmt=json`, { method: 'GET' }
+    );
+    const json = await res.json();
+    const releaseArray = json.releases.map((release) => ({
+      id: release.id,
+      title: release.title,
+      date: release.date
+    }));
+    return releaseArray;
   } catch (error) {
     console.error(`An error has occured: ${error.message}`);
     return [];
