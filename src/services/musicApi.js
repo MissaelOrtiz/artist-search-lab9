@@ -92,3 +92,16 @@ export const getSongsById = async (id) => {
     return {};
   }
 };
+
+export const getSongLyrics = async (artist, song) => {
+  try {
+    const res = await fetch(
+      `https://api.lyrics.ovh/v1/${artist}/${song}`, { method: 'GET' }
+    );
+    const json = await res.json();
+    return json.lyrics;
+  } catch (error) {
+    console.error(`An error has occured: ${error.message}`);
+    return {};
+  }
+};
