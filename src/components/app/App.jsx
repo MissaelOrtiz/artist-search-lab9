@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ArtistSearch from '../../containers/ArtistSearch';
 import ArtistDetail from '../artists/ArtistDetail';
 import ReleaseDetail from '../artists/ReleaseDetail';
+import Song from '../artists/Song';
 
 export default function App() {
   return (
@@ -16,7 +17,10 @@ export default function App() {
         <Route exact path="/artists/:id">
           <ArtistDetail />
         </Route>
-        <Route exact path="/releases/:titleC/:idC">
+        <Route exact path="/songs/:artistC/:titleC">
+          <Song />
+        </Route>
+        <Route exact path="/releases/:artistC/:titleC/:idC">
           <ReleaseDetail />
         </Route>
         <Route path="/:searchC/:pageC">

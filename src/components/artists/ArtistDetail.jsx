@@ -32,7 +32,7 @@ const ArtistDetail = () => {
       <ul>
         {releases.map(release => (
           <li key={release.id}>
-            <Release release={release} onError={onError} />
+            <Release artist={artist.name} release={release} onError={onError} />
           </li>
         ))}
       </ul>

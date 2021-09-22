@@ -2,11 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Release = ({ release, onError }) => {
+const Release = ({ release, onError, artist }) => {
   const { title, date, image, id } = release;
   
   return (
-    <button onClick={() => location.replace(`/releases/${title}/${id}`)}>
+    <button onClick={() => location.replace(`/releases/${artist}/${title}/${id}`)}>
       <img src={image} alt={title + ' cover art'} width={'100'} onError={onError}/>
       <p>{title}</p>
       <p>{date}</p>
@@ -21,7 +21,8 @@ Release.propTypes = {
     image: PropTypes.string,
     id: PropTypes.string.isRequired,
   }),
-  onError: PropTypes.func.isRequired
+  onError: PropTypes.func.isRequired,
+  artist: PropTypes.string.isRequired
 };
 
 export default Release;

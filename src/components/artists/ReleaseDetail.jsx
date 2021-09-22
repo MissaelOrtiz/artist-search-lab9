@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { getSongsById } from '../../services/musicApi';
 
 const ReleaseDetail = () => {
-  const { titleC, idC } = useParams();
+  const { titleC, idC, artistC } = useParams();
   const [loading, setLoading] = useState(true);
   const [songs, setSongs] = useState({});
 
@@ -22,8 +22,7 @@ const ReleaseDetail = () => {
       <ul>
         {songs.map(song => (
           <li key={song.id}>
-            {/* <Song title={song.title} id={song.id}/> */}
-            <p>{song.title} {song.id}</p>
+            <button onClick={() => location.replace(`/songs/${artistC}/${song.title}`)}>{song.title}</button>
           </li>
         ))}
       </ul>
