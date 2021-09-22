@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getArtistById, getReleases } from '../../services/musicApi';
+import ReleaseDetail from './ReleaseDetail';
 
 const ArtistDetail = () => {
   const { id } = useParams();
@@ -31,9 +32,7 @@ const ArtistDetail = () => {
       <ul>
         {releases.map(release => (
           <li key={release.id}>
-            <img src={release.image} alt={release.title + ' cover art'} width={'100'} onError={onError}/>
-            <p>{release.title}</p>
-            <p>{release.date}</p>
+            <ReleaseDetail release={release} onError={onError} />
           </li>
         ))}
       </ul>
