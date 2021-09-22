@@ -17,6 +17,10 @@ const ArtistDetail = () => {
       .then(() => setLoading(false));
   }, []);
 
+  const onError = ({ target }) => {
+    target.src = 'https://community.mp3tag.de/uploads/default/original/2X/a/acf3edeb055e7b77114f9e393d1edeeda37e50c9.png';
+  };
+
   if(loading) return <h1>Loading...</h1>;
   return (
     <>
@@ -27,7 +31,7 @@ const ArtistDetail = () => {
       <ul>
         {releases.map(release => (
           <li key={release.id}>
-            <img src={release.image} alt={release.title + 'cover art'} width={'100'}/>
+            <img src={release.image} alt={release.title + ' cover art'} width={'100'} onError={onError}/>
             <p>{release.title}</p>
             <p>{release.date}</p>
           </li>
