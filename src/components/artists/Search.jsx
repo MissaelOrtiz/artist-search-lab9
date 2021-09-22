@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Search = ({ search, onSearch, onSubmit }) => {
   if(search === '') return (<form onSubmit={onSubmit}>
     <label>
-    Find an Artist:{''}
+    Find an Artist:
       <input 
         type="text"
         name="searchWord"
@@ -24,7 +24,7 @@ const Search = ({ search, onSearch, onSubmit }) => {
         onChange={onSearch}
       />
     </label>
-    <button > Submit</button>
+    <button aria-label="submit search"> Submit</button>
   </form>);
 };
 

@@ -50,7 +50,6 @@ export const getReleases = async (id) => {
     const json = await res.json();
     const releaseArray = json.releases.map(async (release) => {
       const releaseUrl = await getCoverArt(release.id);
-      console.log(releaseUrl);
       return {
         id: release.id,
         title: release.title,
