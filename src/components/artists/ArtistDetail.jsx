@@ -20,7 +20,7 @@ const ArtistDetail = () => {
       <h1>{artist.name}</h1>
       <p>Country:{artist.country}</p>
       <p>Type: {artist.type}</p>
-      <p>Active: {artist.begin} - {artist.end}</p>
+      <p>Active: {artist.begin} - {artist.end ?? 'current'}</p>
     </>
   );
 };
